@@ -13,8 +13,10 @@ int main() {
 
 #pragma omp parallel num_threads(NUM_THREADS)
   {
-#pragma omp critical    // ??
-    totalSum += thread_function();
+    long int local_sum = thread_function(); 
+
+ #pragma omp critical    // ??
+    totalSum += local_sum;
   }
 
   printf("\nTotal sum: %ld\n", totalSum);
